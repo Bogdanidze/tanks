@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ua.study</groupId>
-  <artifactId>Test</artifactId>
+  <artifactId>Tanks</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Test</name>
+  <name>Tanks</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -30,7 +30,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>ua.study.Main</mainClass>
+              <mainClass>ua.study.Tanks</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
