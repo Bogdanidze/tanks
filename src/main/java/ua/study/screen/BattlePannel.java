@@ -3,14 +3,18 @@ package ua.study.screen;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class BattlePannel extends JPanel {
+public class BattlePannel extends JPanel implements ActionListener {
 
-    public static final int WIDTH = 300;
-    public static final int HEIGHT = 300;
+    private static final int WIDTH = 300;
+    private static final int HEIGHT = 300;
+    private static final int DELAY = 140;
 
     private boolean leftDirection = false;
     private boolean rightDirection = true;
@@ -18,11 +22,16 @@ public class BattlePannel extends JPanel {
     private boolean downDirection = false;
     private boolean inGame;
 
+    private Timer timer;
+
     public BattlePannel() throws HeadlessException {
         addKeyListener(new BattleKeyAdapter());
         setBackground(Color.black);
         setFocusable(true);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
+
+        timer = new Timer(DELAY, this);
+        timer.start();
     }
 
 
@@ -61,5 +70,10 @@ public class BattlePannel extends JPanel {
                 leftDirection = false;
             }
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("Action performed = " + e);
     }
 }
