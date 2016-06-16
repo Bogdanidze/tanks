@@ -30,4 +30,24 @@ public abstract class Sprite {
     public Direction getDirection() {
         return direction;
     }
+
+    public void moveLeft() {
+        x--;
+    }
+
+    public void moveRight() {
+        x++;
+    }
+
+    public void moveUp() {
+        y--;
+    }
+
+    public void moveDown() {
+        y++;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 }

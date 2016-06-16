@@ -5,18 +5,16 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.HeadlessException;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import ua.study.sprite.Tank;
 
-public class BattlePannel extends JPanel implements ActionListener {
+public class BattlePanel extends JPanel implements ActionListener {
 
     private static final int WIDTH = 300;
     private static final int HEIGHT = 300;
@@ -25,21 +23,16 @@ public class BattlePannel extends JPanel implements ActionListener {
     private static final String TANK_IMAGE_NAME = "/Tank1.jpg";
     private Tank tank = new Tank(TANK_IMAGE_NAME);
 
-    private boolean leftDirection = false;
-    private boolean rightDirection = true;
-    private boolean upDirection = false;
-    private boolean downDirection = false;
-    private boolean inGame;
-
     private int tempX;
 
     private Timer timer;
 
-    public BattlePannel() throws HeadlessException, IOException {
+    public BattlePanel() throws HeadlessException, IOException {
         addKeyListener(new BattleKeyAdapter());
         setBackground(Color.black);
         setFocusable(true);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setDoubleBuffered(true);
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -53,32 +46,24 @@ public class BattlePannel extends JPanel implements ActionListener {
 
             int key = e.getKeyCode();
 
-            if ((key == KeyEvent.VK_LEFT) && (!rightDirection)) {
-                System.out.println("Direction changed to left");
-                leftDirection = true;
-                upDirection = false;
-                downDirection = false;
+            if ((key == KeyEvent.VK_LEFT)) {
+                System.out.println("Move left");
+                tank.moveLeft();
             }
 
-            if ((key == KeyEvent.VK_RIGHT) && (!leftDirection)) {
-                System.out.println("Direction changed to right");
-                rightDirection = true;
-                upDirection = false;
-                downDirection = false;
+            if ((key == KeyEvent.VK_RIGHT)) {
+                System.out.println("Move right");
+                tank.moveRight();
             }
 
-            if ((key == KeyEvent.VK_UP) && (!downDirection)) {
-                System.out.println("Direction changed to up");
-                upDirection = true;
-                rightDirection = false;
-                leftDirection = false;
+            if ((key == KeyEvent.VK_UP)) {
+                System.out.println("Move up");
+                tank.moveUp();
             }
 
-            if ((key == KeyEvent.VK_DOWN) && (!upDirection)) {
-                System.out.println("Direction changed to down");
-                downDirection = true;
-                rightDirection = false;
-                leftDirection = false;
+            if ((key == KeyEvent.VK_DOWN)) {
+                System.out.println("Move down");
+                tank.moveDown();
             }
         }
     }
@@ -94,9 +79,7 @@ public class BattlePannel extends JPanel implements ActionListener {
         Graphics2D graphics2D = (Graphics2D) g;
 
         graphics2D.setColor(Color.red);
-        tempX = tempX + 1;
-        System.out.println("tempX = " + tempX);
-        graphics2D.drawRect(0, 0, tempX, tempX);
+        graphics2D.drawRect(0, 0, ++tempX, tempX);
 
         graphics2D.drawImage(tank.getImage(), tank.getX(), tank.getY(), null);
     }

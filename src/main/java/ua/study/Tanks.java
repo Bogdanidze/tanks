@@ -5,14 +5,14 @@ import java.awt.HeadlessException;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import ua.study.screen.BattlePannel;
+import ua.study.screen.BattlePanel;
 
 public class Tanks extends JFrame {
 
     public static final String TITLE = "Tanks";
 
     public Tanks() throws HeadlessException, IOException {
-        add(new BattlePannel());
+        add(new BattlePanel());
 
         setResizable(false);
         pack();
