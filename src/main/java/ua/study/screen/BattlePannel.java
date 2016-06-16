@@ -14,6 +14,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import ua.study.sprite.Tank;
 
 public class BattlePannel extends JPanel implements ActionListener {
 
@@ -22,7 +23,7 @@ public class BattlePannel extends JPanel implements ActionListener {
     private static final int DELAY = 140;
 
     private static final String TANK_IMAGE_NAME = "/Tank1.jpg";
-    private static Image tankImage;
+    private Tank tank = new Tank(TANK_IMAGE_NAME);
 
     private boolean leftDirection = false;
     private boolean rightDirection = true;
@@ -42,8 +43,6 @@ public class BattlePannel extends JPanel implements ActionListener {
 
         timer = new Timer(DELAY, this);
         timer.start();
-        tankImage = ImageIO.read(getClass().getResource(TANK_IMAGE_NAME));
-
     }
 
 
@@ -99,6 +98,6 @@ public class BattlePannel extends JPanel implements ActionListener {
         System.out.println("tempX = " + tempX);
         graphics2D.drawRect(0, 0, tempX, tempX);
 
-        graphics2D.drawImage(tankImage, 100, 100, null);
+        graphics2D.drawImage(tank.getImage(), tank.getX(), tank.getY(), null);
     }
 }
