@@ -2,6 +2,7 @@ package ua.study;
 
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import ua.study.screen.BattlePannel;
@@ -10,7 +11,7 @@ public class Tanks extends JFrame {
 
     public static final String TITLE = "Tanks";
 
-    public Tanks() throws HeadlessException {
+    public Tanks() throws HeadlessException, IOException {
         add(new BattlePannel());
 
         setResizable(false);
@@ -25,8 +26,12 @@ public class Tanks extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame tanks = new Tanks();
-                tanks.setVisible(true);
+                try {
+                    JFrame tanks = new Tanks();
+                    tanks.setVisible(true);
+                } catch (IOException e) {
+                    System.out.println("Exception while starting the game: " + e);
+                }
             }
         });
     }
