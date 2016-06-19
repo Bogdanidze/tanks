@@ -5,7 +5,7 @@ import java.awt.HeadlessException;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import ua.study.screen.BattlePanel;
+import ua.study.field.BattlePanel;
 
 public class Tanks extends JFrame {
 

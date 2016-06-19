@@ -1,4 +1,4 @@
-package ua.study.screen;
+package ua.study.field;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,8 +12,6 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.util.Arrays;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -25,7 +23,7 @@ public class BattlePanel extends JPanel implements ActionListener {
     private static final int HEIGHT = 300;
     private static final int DELAY = 140;
 
-    private static final String LEVEL_1_FILE_NAME = "../map/level1.txt";
+    private static final String LEVEL_1_FILE_NAME = "level1.txt";
 
     private Tank tank = new Tank();
 
