@@ -27,10 +27,7 @@ public class BattlePanel extends JPanel implements ActionListener {
 
     private static final String LEVEL_1_FILE_NAME = "../map/level1.txt";
 
-    private static final String TANK_IMAGE_NAME = "/ua/study/sprite/Tank1.jpg";
-    private Tank tank = new Tank(TANK_IMAGE_NAME);
-
-    private int tempX;
+    private Tank tank = new Tank();
 
     private Timer timer;
 
@@ -44,7 +41,6 @@ public class BattlePanel extends JPanel implements ActionListener {
         timer = new Timer(DELAY, this);
         timer.start();
 
-        byte[] level1 = Files.readAllBytes(FileSystems.getDefault().getPath("c:\\source\\Test\\src\\main\\resources/map", "level1.txt"));
         InputStream stream = getClass().getResourceAsStream(LEVEL_1_FILE_NAME);
         byte[] bytes = new byte[30];
         int read = stream.read(bytes);

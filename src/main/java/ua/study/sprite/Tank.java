@@ -4,7 +4,9 @@ import java.io.IOException;
 
 public class Tank extends Sprite{
 
-    public Tank(String imageName) throws IOException {
-        super(imageName);
+    private static final String TANK_IMAGE_NAME = "Tank1.jpg";
+
+    public Tank() throws IOException {
+        super(TANK_IMAGE_NAME);
     }
 }
