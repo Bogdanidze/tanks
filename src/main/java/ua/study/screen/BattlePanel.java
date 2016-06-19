@@ -10,6 +10,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.util.Arrays;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import ua.study.sprite.Tank;
@@ -20,7 +25,9 @@ public class BattlePanel extends JPanel implements ActionListener {
     private static final int HEIGHT = 300;
     private static final int DELAY = 140;
 
-    private static final String TANK_IMAGE_NAME = "/Tank1.jpg";
+    private static final String LEVEL_1_FILE_NAME = "../map/level1.txt";
+
+    private static final String TANK_IMAGE_NAME = "/ua/study/sprite/Tank1.jpg";
     private Tank tank = new Tank(TANK_IMAGE_NAME);
 
     private int tempX;
@@ -36,6 +43,16 @@ public class BattlePanel extends JPanel implements ActionListener {
 
         timer = new Timer(DELAY, this);
         timer.start();
+
+        byte[] level1 = Files.readAllBytes(FileSystems.getDefault().getPath("c:\\source\\Test\\src\\main\\resources/map", "level1.txt"));
+        InputStream stream = getClass().getResourceAsStream(LEVEL_1_FILE_NAME);
+        byte[] bytes = new byte[30];
+        int read = stream.read(bytes);
+        System.out.println("Level 1 = " + Arrays.toString(bytes));
+
+        InputStreamReader inputStreamReader = new InputStreamReader(stream);
+        char[] chars = new char[30];
+        System.out.println(inputStreamReader.read(chars));
     }
 
 
@@ -77,10 +94,6 @@ public class BattlePanel extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-
-        graphics2D.setColor(Color.red);
-        graphics2D.drawRect(0, 0, ++tempX, tempX);
-
         graphics2D.drawImage(tank.getImage(), tank.getX(), tank.getY(), null);
     }
 }
