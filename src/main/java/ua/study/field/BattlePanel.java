@@ -25,9 +25,10 @@ import ua.study.sprite.Tank;
 
 public class BattlePanel extends JPanel implements ActionListener {
 
-    private static final int WIDTH = 300;
-    private static final int HEIGHT = 300;
+    private static final int WIDTH = 600;
+    private static final int HEIGHT = 600;
     private static final int DELAY = 140;
+    public static final int BARRIER_SIZE = 100;
 
     private static final String LEVEL_1_FILE_NAME = "level1.txt";
     private final String ROW_SEPARATOR = ":";
@@ -128,14 +129,17 @@ public class BattlePanel extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        paintInitialState(g);
         Graphics2D graphics2D = (Graphics2D) g;
+        paintInitialState(g);
         graphics2D.drawImage(tank.getImage(), tank.getX(), tank.getY(), null);
     }
 
     private void paintInitialState(Graphics g) {
         if (initialState) {
-
+            for (Barrier barrier : barriers) {
+                g.drawString(barrier.getBarrierType().name(), barrier.getX() * BARRIER_SIZE, barrier.getY() * BARRIER_SIZE);
+            }
+//            initialState = false;
         }
     }
 }

@@ -14,6 +14,18 @@ public class Barrier {
         this.y = Integer.parseInt(y);
     }
 
+    public BarrierType getBarrierType() {
+        return barrierType;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     @Override
     public String toString() {
         return "Barrier{" +
