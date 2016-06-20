@@ -1,5 +1,6 @@
-package ua.study.sprite;
+package ua.study.element.sprite;
 
+import java.awt.Graphics2D;
 import java.io.IOException;
 
 public class Tank extends Sprite{
@@ -8,5 +9,10 @@ public class Tank extends Sprite{
 
     public Tank() throws IOException {
         super(TANK_IMAGE_NAME);
+    }
+
+    @Override
+    public void draw(Graphics2D graphics2D) {
+        graphics2D.drawImage(image, x, y, null);
     }
 }

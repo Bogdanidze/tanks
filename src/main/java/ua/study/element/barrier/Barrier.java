@@ -1,6 +1,11 @@
-package ua.study.field.barrier;
+package ua.study.element.barrier;
 
-public class Barrier {
+import java.awt.Graphics2D;
+import ua.study.element.Drawable;
+
+public class Barrier implements Drawable {
+
+    public static final int BARRIER_SIZE = 100;
 
     private final BarrierType barrierType;
 
@@ -24,6 +29,11 @@ public class Barrier {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public void draw(Graphics2D graphics2D) {
+        graphics2D.drawString(barrierType.name(), x * BARRIER_SIZE, y * BARRIER_SIZE);
     }
 
     @Override

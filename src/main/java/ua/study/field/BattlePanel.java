@@ -19,16 +19,16 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import ua.study.field.barrier.Barrier;
-import ua.study.field.barrier.BarrierType;
-import ua.study.sprite.Tank;
+
+import ua.study.element.barrier.Barrier;
+import ua.study.element.barrier.BarrierType;
+import ua.study.element.sprite.Tank;
 
 public class BattlePanel extends JPanel implements ActionListener {
 
     private static final int WIDTH = 600;
     private static final int HEIGHT = 600;
-    private static final int DELAY = 140;
-    public static final int BARRIER_SIZE = 100;
+    private static final int DELAY = 16;    // ~ 60 FPS
 
     private static final String LEVEL_1_FILE_NAME = "level1.txt";
     private final String ROW_SEPARATOR = ":";
@@ -100,22 +100,18 @@ public class BattlePanel extends JPanel implements ActionListener {
             int key = e.getKeyCode();
 
             if ((key == KeyEvent.VK_LEFT)) {
-                System.out.println("Move left");
                 tank.moveLeft();
             }
 
             if ((key == KeyEvent.VK_RIGHT)) {
-                System.out.println("Move right");
                 tank.moveRight();
             }
 
             if ((key == KeyEvent.VK_UP)) {
-                System.out.println("Move up");
                 tank.moveUp();
             }
 
             if ((key == KeyEvent.VK_DOWN)) {
-                System.out.println("Move down");
                 tank.moveDown();
             }
         }
@@ -130,14 +126,14 @@ public class BattlePanel extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-        paintInitialState(g);
-        graphics2D.drawImage(tank.getImage(), tank.getX(), tank.getY(), null);
+        paintInitialState(graphics2D);
+        tank.draw(graphics2D);
     }
 
-    private void paintInitialState(Graphics g) {
+    private void paintInitialState(Graphics2D graphics2D) {
         if (initialState) {
             for (Barrier barrier : barriers) {
-                g.drawString(barrier.getBarrierType().name(), barrier.getX() * BARRIER_SIZE, barrier.getY() * BARRIER_SIZE);
+                barrier.draw(graphics2D);
             }
 //            initialState = false;
         }

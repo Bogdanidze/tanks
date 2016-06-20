@@ -1,4 +1,4 @@
-package ua.study.field.barrier;
+package ua.study.element.barrier;
 
 public enum BarrierType {
 

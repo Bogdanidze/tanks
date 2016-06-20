@@ -1,10 +1,12 @@
-package ua.study.sprite;
+package ua.study.element.sprite;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import ua.study.element.Drawable;
 
-public abstract class Sprite {
+public abstract class Sprite implements Drawable{
     protected final Image image;
     protected int x;
     protected int y;
