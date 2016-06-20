@@ -9,6 +9,7 @@ public class Tank extends Sprite{
 
     public Tank() throws IOException {
         super(TANK_IMAGE_NAME);
+        speed = 5;
     }
 
     @Override

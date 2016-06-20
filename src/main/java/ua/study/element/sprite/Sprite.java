@@ -11,10 +11,10 @@ public abstract class Sprite implements Drawable{
     protected int x;
     protected int y;
     protected Direction direction = Direction.NONE;
+    protected int speed = 1;
 
     public Sprite(String imageName) throws IOException {
         image = ImageIO.read(getClass().getResource(imageName));
-
     }
 
     public Image getImage() {
@@ -34,19 +34,19 @@ public abstract class Sprite implements Drawable{
     }
 
     public void moveLeft() {
-        x--;
+        x -= speed;
     }
 
     public void moveRight() {
-        x++;
+        x += speed;
     }
 
     public void moveUp() {
-        y--;
+        y -= speed;
     }
 
     public void moveDown() {
-        y++;
+        y += speed;
     }
 
     public void setDirection(Direction direction) {
