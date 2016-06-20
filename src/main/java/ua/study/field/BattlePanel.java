@@ -26,8 +26,8 @@ import ua.study.element.sprite.Tank;
 
 public class BattlePanel extends JPanel implements ActionListener {
 
-    private static final int WIDTH = 600;
-    private static final int HEIGHT = 600;
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 600;
     private static final int DELAY = 16;    // ~ 60 FPS
 
     private static final String LEVEL_1_FILE_NAME = "level1.txt";

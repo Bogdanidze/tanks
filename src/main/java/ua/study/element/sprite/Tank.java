@@ -3,12 +3,13 @@ package ua.study.element.sprite;
 import java.awt.Graphics2D;
 import java.io.IOException;
 
-public class Tank extends Sprite{
+public class Tank extends Sprite {
 
     private static final String TANK_IMAGE_NAME = "Tank1.jpg";
+    private static final int EDGE_SIZE = 100;
 
     public Tank() throws IOException {
-        super(TANK_IMAGE_NAME);
+        super(TANK_IMAGE_NAME, EDGE_SIZE);
         speed = 5;
     }
 
