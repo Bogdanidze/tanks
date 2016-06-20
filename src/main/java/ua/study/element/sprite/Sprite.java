@@ -41,40 +41,60 @@ public abstract class Sprite implements Drawable{
     }
 
     public void moveLeft() {
-        if (x - speed < 0) {
+        int newX = x - speed;
+        if (newX < 0) {
             return;
         }
-        Rectangle rectangle = new Rectangle(x - speed, y, edgeSize, edgeSize);
-        System.out.println("Start Check for new Tank position x=" + x + ", y=" + y);
+        if (isBarrierOnWay(newX, y)) {
+           return;
+        }
+        x -= speed;
+    }
+
+    private boolean isBarrierOnWay(int newX, int newY) {
+        Rectangle rectangle = new Rectangle(newX, newY, edgeSize, edgeSize);
+        System.out.println("Start Check for new Tank position x=" + newX + ", y=" + newY);
         for (Barrier barrier : battlePanel.getBarriers()) {
             if (rectangle.intersects(
                     new Rectangle(barrier.getX(), barrier.getY(), BARRIER_SIZE, BARRIER_SIZE))) {
                 System.out.println("Tank intersects with barrier " + barrier);
-                return;
+                return true;
             } else {
                 System.out.println("Tank does NOT intersect with barrier " + barrier);
             }
         }
         System.out.println("Stop Check");
-        x -= speed;
+        return false;
     }
 
     public void moveRight() {
-        if (x + edgeSize + speed > BattlePanel.WIDTH) {
+        int newX = x + speed;
+        if (newX + edgeSize > BattlePanel.WIDTH) {
+            return;
+        }
+        if (isBarrierOnWay(newX, y)) {
             return;
         }
         x += speed;
     }
 
     public void moveUp() {
-        if (y - speed <0) {
+        int newY = y - speed;
+        if (newY <0) {
+            return;
+        }
+        if (isBarrierOnWay(x, newY)) {
             return;
         }
         y -= speed;
     }
 
     public void moveDown() {
-        if (y + edgeSize + speed > BattlePanel.HEIGHT) {
+        int newY = y + speed;
+        if (newY + edgeSize > BattlePanel.HEIGHT) {
+            return;
+        }
+        if (isBarrierOnWay(x, newY)) {
             return;
         }
         y += speed;
