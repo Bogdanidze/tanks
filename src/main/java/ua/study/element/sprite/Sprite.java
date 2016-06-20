@@ -1,9 +1,12 @@
 package ua.study.element.sprite;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import ua.study.element.Drawable;
+import ua.study.element.barrier.Barrier;
+import static ua.study.element.barrier.Barrier.BARRIER_SIZE;
 import ua.study.field.BattlePanel;
 
 public abstract class Sprite implements Drawable{
@@ -13,10 +16,12 @@ public abstract class Sprite implements Drawable{
     protected Direction direction = Direction.NONE;
     protected int speed = 1;
     private final int edgeSize;
+    private final BattlePanel battlePanel;
 
-    public Sprite(String imageName, int edgeSize) throws IOException {
+    public Sprite(String imageName, int edgeSize, BattlePanel battlePanel) throws IOException {
         image = ImageIO.read(getClass().getResource(imageName));
         this.edgeSize = edgeSize;
+        this.battlePanel = battlePanel;
     }
 
     public Image getImage() {
@@ -39,6 +44,18 @@ public abstract class Sprite implements Drawable{
         if (x - speed < 0) {
             return;
         }
+        Rectangle rectangle = new Rectangle(x - speed, y, edgeSize, edgeSize);
+        System.out.println("Start Check for new Tank position x=" + x + ", y=" + y);
+        for (Barrier barrier : battlePanel.getBarriers()) {
+            if (rectangle.intersects(
+                    new Rectangle(barrier.getX(), barrier.getY(), BARRIER_SIZE, BARRIER_SIZE))) {
+                System.out.println("Tank intersects with barrier " + barrier);
+                return;
+            } else {
+                System.out.println("Tank does NOT intersect with barrier " + barrier);
+            }
+        }
+        System.out.println("Stop Check");
         x -= speed;
     }
 

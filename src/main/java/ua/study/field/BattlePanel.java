@@ -35,7 +35,7 @@ public class BattlePanel extends JPanel implements ActionListener {
     private final String BARRIER_SEPARATOR = ";";
     private final String COORDINATE_SEPARATOR = ",";
 
-    private Tank tank = new Tank();
+    private Tank tank = new Tank(this);
 
     private Timer timer;
 
@@ -133,5 +133,9 @@ public class BattlePanel extends JPanel implements ActionListener {
         for (Barrier barrier : barriers) {
             barrier.draw(graphics2D);
         }
+    }
+
+    public List<Barrier> getBarriers() {
+        return barriers;
     }
 }
