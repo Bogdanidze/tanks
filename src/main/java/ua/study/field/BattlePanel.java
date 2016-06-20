@@ -38,7 +38,6 @@ public class BattlePanel extends JPanel implements ActionListener {
     private Tank tank = new Tank();
 
     private Timer timer;
-    private boolean initialState = true;
 
     private List<Barrier> barriers = new ArrayList<>();
 
@@ -126,16 +125,13 @@ public class BattlePanel extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-        paintInitialState(graphics2D);
+        drawBarriers(graphics2D);
         tank.draw(graphics2D);
     }
 
-    private void paintInitialState(Graphics2D graphics2D) {
-        if (initialState) {
-            for (Barrier barrier : barriers) {
-                barrier.draw(graphics2D);
-            }
-//            initialState = false;
+    private void drawBarriers(Graphics2D graphics2D) {
+        for (Barrier barrier : barriers) {
+            barrier.draw(graphics2D);
         }
     }
 }
