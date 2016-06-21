@@ -9,7 +9,7 @@ import ua.study.field.BattlePanel;
 
 public class Tanks extends JFrame {
 
-    public static final String TITLE = "Tanks";
+    public static final String TITLE = "Tanks of Bogdan";
 
     public Tanks() throws HeadlessException, IOException {
         add(new BattlePanel());
