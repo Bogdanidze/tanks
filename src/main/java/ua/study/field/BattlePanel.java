@@ -53,19 +53,19 @@ public class BattlePanel extends JPanel implements ActionListener {
 
             int key = e.getKeyCode();
 
-            if ((key == KeyEvent.VK_LEFT)) {
+            if ((key == KeyEvent.VK_LEFT && Direction.LEFT != tank.getDirection())) {
                 tank.setDirection(Direction.LEFT);
             }
 
-            if ((key == KeyEvent.VK_RIGHT)) {
+            if ((key == KeyEvent.VK_RIGHT && Direction.RIGHT != tank.getDirection())) {
                 tank.setDirection(Direction.RIGHT);
             }
 
-            if ((key == KeyEvent.VK_UP)) {
+            if ((key == KeyEvent.VK_UP && Direction.UP != tank.getDirection())) {
                 tank.setDirection(Direction.UP);
             }
 
-            if ((key == KeyEvent.VK_DOWN)) {
+            if ((key == KeyEvent.VK_DOWN && Direction.DOWN != tank.getDirection())) {
                 tank.setDirection(Direction.DOWN);
             }
         }
