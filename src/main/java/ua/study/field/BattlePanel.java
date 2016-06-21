@@ -22,13 +22,14 @@ import javax.swing.Timer;
 
 import ua.study.element.barrier.Barrier;
 import ua.study.element.barrier.BarrierType;
+import ua.study.element.sprite.Direction;
 import ua.study.element.sprite.Tank;
 
 public class BattlePanel extends JPanel implements ActionListener {
 
     public static final int WIDTH = 600;
     public static final int HEIGHT = 600;
-    private static final int DELAY = 16;    // ~ 60 FPS
+    private static final int DELAY = 25;    // 40 FPS
 
     private static final String LEVEL_1_FILE_NAME = "level1.txt";
     private final String ROW_SEPARATOR = ":";
@@ -76,7 +77,7 @@ public class BattlePanel extends JPanel implements ActionListener {
     private void loadLine(String line) {
         String[] typeWithCoordinates = line.split(ROW_SEPARATOR);
         BarrierType barrierType = BarrierType.getBarrierType(typeWithCoordinates[0]);
-        System.out.println("barrierType  = " + barrierType );
+        System.out.println("barrierType  = " + barrierType);
         if (barrierType == null) {
             System.out.println("Line '" + line + "' does not contain proper barrier type!");
             return;
@@ -99,26 +100,53 @@ public class BattlePanel extends JPanel implements ActionListener {
             int key = e.getKeyCode();
 
             if ((key == KeyEvent.VK_LEFT)) {
-                tank.moveLeft();
+                tank.setDirection(Direction.LEFT);
             }
 
             if ((key == KeyEvent.VK_RIGHT)) {
-                tank.moveRight();
+                tank.setDirection(Direction.RIGHT);
             }
 
             if ((key == KeyEvent.VK_UP)) {
-                tank.moveUp();
+                tank.setDirection(Direction.UP);
             }
 
             if ((key == KeyEvent.VK_DOWN)) {
-                tank.moveDown();
+                tank.setDirection(Direction.DOWN);
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
+            int key = e.getKeyCode();
+
+            if ((key == KeyEvent.VK_LEFT) && Direction.LEFT == tank.getDirection()) {
+                tank.setDirection(Direction.NONE);
+            }
+
+            if ((key == KeyEvent.VK_RIGHT)  && Direction.RIGHT == tank.getDirection()) {
+                tank.setDirection(Direction.NONE);
+            }
+
+            if ((key == KeyEvent.VK_UP) && Direction.UP == tank.getDirection()) {
+                tank.setDirection(Direction.NONE);
+            }
+
+            if ((key == KeyEvent.VK_DOWN) && Direction.DOWN == tank.getDirection()) {
+                tank.setDirection(Direction.NONE);
             }
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        moveSprites();
         repaint();
+    }
+
+    private void moveSprites() {
+        tank.move();
     }
 
     @Override

@@ -11,7 +11,7 @@ public class Tank extends Sprite {
 
     public Tank(BattlePanel battlePanel) throws IOException {
         super(TANK_IMAGE_NAME, EDGE_SIZE, battlePanel);
-        speed = 5;
+        speed = 3;
     }
 
     @Override
