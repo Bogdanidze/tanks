@@ -8,18 +8,18 @@ import ua.study.field.BattlePanel;
 
 public class Tank extends Sprite {
 
-    private static final String TANK_IMAGE_NAME_LEFT = "Tank2Left.jpg";
-    private static final String TANK_IMAGE_NAME_RIGHT = "Tank2Right.jpg";
-    private static final String TANK_IMAGE_NAME_UP = "Tank2Up.jpg";
-    private static final String TANK_IMAGE_NAME_DOWN = "Tank2Down.jpg";
+    private static final String TANK_IMAGE_NAME_LEFT = "Tank3Left.png";
+    private static final String TANK_IMAGE_NAME_RIGHT = "Tank3Right.png";
+    private static final String TANK_IMAGE_NAME_UP = "Tank3Up.png";
+    private static final String TANK_IMAGE_NAME_DOWN = "Tank3Down.png";
 
-    private static Image tankImageleft;
+    private static Image tankImageLeft;
     private static Image tankImageRight;
     private static Image tankImageUp;
     private static Image tankImageDown;
     static {
         try {
-            tankImageleft = ImageIO.read(Tank.class.getResource(TANK_IMAGE_NAME_LEFT));
+            tankImageLeft = ImageIO.read(Tank.class.getResource(TANK_IMAGE_NAME_LEFT));
             tankImageRight = ImageIO.read(Tank.class.getResource(TANK_IMAGE_NAME_RIGHT));
             tankImageUp = ImageIO.read(Tank.class.getResource(TANK_IMAGE_NAME_UP));
             tankImageDown = ImageIO.read(Tank.class.getResource(TANK_IMAGE_NAME_DOWN));
@@ -44,7 +44,7 @@ public class Tank extends Sprite {
     public void setDirection(Direction direction) {
         super.setDirection(direction);
         switch (direction) {
-            case LEFT: image = tankImageleft; break;
+            case LEFT: image = tankImageLeft; break;
             case RIGHT: image = tankImageRight; break;
             case UP: image = tankImageUp; break;
             case DOWN: image = tankImageDown; break;
