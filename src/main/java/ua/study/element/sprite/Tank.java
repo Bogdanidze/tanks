@@ -6,8 +6,8 @@ import ua.study.field.BattlePanel;
 
 public class Tank extends Sprite {
 
-    private static final String TANK_IMAGE_NAME = "Tank1.jpg";
-    private static final int EDGE_SIZE = 100;
+    private static final String TANK_IMAGE_NAME = "Tank2.jpg";
+    private static final int EDGE_SIZE = 90;
 
     public Tank(BattlePanel battlePanel) throws IOException {
         super(TANK_IMAGE_NAME, EDGE_SIZE, battlePanel);
