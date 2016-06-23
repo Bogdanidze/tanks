@@ -1,5 +1,6 @@
 package ua.study.element.sprite;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import ua.study.element.Drawable;
@@ -19,6 +20,8 @@ public abstract class Sprite implements Drawable{
     public Sprite(Image image, int edgeSize, int x, int y) {
         this.image = image;
         this.edgeSize = edgeSize;
+        this.x = x;
+        this.y = y;
     }
 
     public Image getImage() {
@@ -35,6 +38,11 @@ public abstract class Sprite implements Drawable{
 
     public Direction getDirection() {
         return direction;
+    }
+
+    @Override
+    public void draw(Graphics2D graphics2D) {
+        graphics2D.drawImage(image, x, y, null);
     }
 
     public void move() {

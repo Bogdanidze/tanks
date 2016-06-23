@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import ua.study.element.barrier.Barrier;
+import ua.study.element.sprite.CannonBall;
 import ua.study.element.sprite.Direction;
 import ua.study.element.sprite.Tank;
 
@@ -33,6 +34,8 @@ public class BattlePanel extends JPanel implements ActionListener {
     protected List<Barrier> barriers = new ArrayList<>();
 
     private Tank tank = new Tank();
+
+    private List<CannonBall> cannonBalls = new ArrayList<>();
 
     private BattlePanel() {
         addKeyListener(new BattleKeyAdapter());
@@ -77,7 +80,7 @@ public class BattlePanel extends JPanel implements ActionListener {
             }
 
             if ((key == KeyEvent.VK_SPACE)) {
-                tank.fire();
+                cannonBalls.add(tank.fire());
             }
         }
 
@@ -118,13 +121,15 @@ public class BattlePanel extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-        drawBarriers(graphics2D);
-        tank.draw(graphics2D);
-    }
 
-    private void drawBarriers(Graphics2D graphics2D) {
         for (Barrier barrier : barriers) {
             barrier.draw(graphics2D);
+        }
+
+        tank.draw(graphics2D);
+
+        for (CannonBall cannonBall : cannonBalls) {
+            cannonBall.draw(graphics2D);
         }
     }
 

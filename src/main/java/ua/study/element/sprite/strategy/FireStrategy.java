@@ -1,5 +1,6 @@
 package ua.study.element.sprite.strategy;
 
+import ua.study.element.sprite.CannonBall;
 import ua.study.element.sprite.Tank;
 
 public class FireStrategy {
@@ -15,9 +16,12 @@ public class FireStrategy {
         lastFiredAt = System.currentTimeMillis();
     }
 
-    public void fire() {
+    public CannonBall fire() {
         if (System.currentTimeMillis() - MIN_FIRE_INTERVAL >= lastFiredAt) {
             lastFiredAt = System.currentTimeMillis();
+            return new CannonBall(100, 0);
+        } else {
+            return null;
         }
     }
 }

@@ -41,11 +41,6 @@ public class Tank extends Sprite {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D) {
-        graphics2D.drawImage(image, x, y, null);
-    }
-
-    @Override
     public void setDirection(Direction direction) {
         super.setDirection(direction);
         switch (direction) {
@@ -56,7 +51,7 @@ public class Tank extends Sprite {
         }
     }
 
-    public void fire() {
-        fireStrategy.fire();
+    public CannonBall fire() {
+        return fireStrategy.fire();
     }
 }
