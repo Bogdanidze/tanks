@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -21,19 +20,21 @@ import ua.study.element.sprite.Tank;
 
 public class BattlePanel extends JPanel implements ActionListener {
 
+    private static final BattlePanel INSTANCE = new BattlePanel();
+
     public static final int WIDTH = 600;
     public static final int HEIGHT = 600;
     private static final int DELAY = 25;    // 40 FPS
 
     private static final String LEVEL_1_FILE_NAME = "level1.txt";
 
-    private Tank tank = new Tank(this);
-
     private Timer timer;
 
     protected List<Barrier> barriers = new ArrayList<>();
 
-    public BattlePanel() throws HeadlessException, IOException {
+    private Tank tank = new Tank();
+
+    private BattlePanel() {
         addKeyListener(new BattleKeyAdapter());
         setBackground(Color.black);
         setFocusable(true);
@@ -41,9 +42,15 @@ public class BattlePanel extends JPanel implements ActionListener {
         setDoubleBuffered(true);
 
         timer = new Timer(DELAY, this);
-        timer.start();
+    }
 
+    public static BattlePanel getInstance() {
+        return INSTANCE;
+    }
+
+    public void start() throws IOException {
         barriers = LevelLoader.loadLevel(LEVEL_1_FILE_NAME);
+        timer.start();
     }
 
     private class BattleKeyAdapter extends KeyAdapter {

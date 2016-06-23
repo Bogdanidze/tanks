@@ -2,25 +2,25 @@ package ua.study.element.sprite;
 
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.io.IOException;
 import ua.study.element.Drawable;
 import ua.study.element.barrier.Barrier;
 import static ua.study.element.barrier.Barrier.BARRIER_SIZE;
 import ua.study.field.BattlePanel;
 
 public abstract class Sprite implements Drawable{
+
+    private static final BattlePanel BATTLE_PANEL = BattlePanel.getInstance();
+
     protected Image image;
     protected int x;
     protected int y;
     protected Direction direction = Direction.NONE;
     protected int speed = 1;
     private final int edgeSize;
-    private final BattlePanel battlePanel;
 
-    public Sprite(Image image, int edgeSize, BattlePanel battlePanel) throws IOException {
+    public Sprite(Image image, int edgeSize, int x, int y) {
         this.image = image;
         this.edgeSize = edgeSize;
-        this.battlePanel = battlePanel;
     }
 
     public Image getImage() {
@@ -58,7 +58,7 @@ public abstract class Sprite implements Drawable{
 
     private boolean isBarrierOnWay(int newX, int newY) {
         Rectangle rectangle = new Rectangle(newX, newY, edgeSize, edgeSize);
-        for (Barrier barrier : battlePanel.getBarriers()) {
+        for (Barrier barrier : BATTLE_PANEL.getBarriers()) {
             if (rectangle.intersects(
                     new Rectangle(barrier.getX(), barrier.getY(), BARRIER_SIZE, BARRIER_SIZE))) {
                 return true;

@@ -31,10 +31,13 @@ public class Tank extends Sprite {
 
     private static final int EDGE_SIZE = 90;
 
+    private static final int PLAYER_1_INITIAL_POSITION_X = 0;
+    private static final int PLAYER_1_INITIAL_POSITION_Y = 0;
+
     private FireStrategy fireStrategy = new FireStrategy(this);
 
-    public Tank(BattlePanel battlePanel) throws IOException {
-        super(tankImageUp, EDGE_SIZE, battlePanel);
+    public Tank() {
+        super(tankImageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y);
         speed = 3;
     }
 

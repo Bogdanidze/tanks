@@ -12,7 +12,9 @@ public class Tanks extends JFrame {
     public static final String TITLE = "Tanks of Bogdan";
 
     public Tanks() throws HeadlessException, IOException {
-        add(new BattlePanel());
+        BattlePanel battlePanel = BattlePanel.getInstance();
+        battlePanel.start();
+        add(battlePanel);
 
         setResizable(false);
         pack();
