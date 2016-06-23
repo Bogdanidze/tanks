@@ -5,25 +5,24 @@ import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import ua.study.element.sprite.strategy.FireStrategy;
-import ua.study.field.BattlePanel;
 
 public class Tank extends Sprite {
 
-    private static final String TANK_IMAGE_NAME_LEFT = "Tank3Left.png";
-    private static final String TANK_IMAGE_NAME_RIGHT = "Tank3Right.png";
-    private static final String TANK_IMAGE_NAME_UP = "Tank3Up.png";
-    private static final String TANK_IMAGE_NAME_DOWN = "Tank3Down.png";
+    private static final String IMAGE_NAME_LEFT = "Tank3Left.png";
+    private static final String IMAGE_NAME_RIGHT = "Tank3Right.png";
+    private static final String IMAGE_NAME_UP = "Tank3Up.png";
+    private static final String IMAGE_NAME_DOWN = "Tank3Down.png";
 
-    private static Image tankImageLeft;
-    private static Image tankImageRight;
-    private static Image tankImageUp;
-    private static Image tankImageDown;
+    private static Image imageLeft;
+    private static Image imageRight;
+    private static Image imageUp;
+    private static Image imageDown;
     static {
         try {
-            tankImageLeft = ImageIO.read(Tank.class.getResource(TANK_IMAGE_NAME_LEFT));
-            tankImageRight = ImageIO.read(Tank.class.getResource(TANK_IMAGE_NAME_RIGHT));
-            tankImageUp = ImageIO.read(Tank.class.getResource(TANK_IMAGE_NAME_UP));
-            tankImageDown = ImageIO.read(Tank.class.getResource(TANK_IMAGE_NAME_DOWN));
+            imageLeft = ImageIO.read(Tank.class.getResource(IMAGE_NAME_LEFT));
+            imageRight = ImageIO.read(Tank.class.getResource(IMAGE_NAME_RIGHT));
+            imageUp = ImageIO.read(Tank.class.getResource(IMAGE_NAME_UP));
+            imageDown = ImageIO.read(Tank.class.getResource(IMAGE_NAME_DOWN));
         } catch (IOException e) {
             System.out.println("Error while loading batank image: " + e);
         }
@@ -37,7 +36,7 @@ public class Tank extends Sprite {
     private FireStrategy fireStrategy = new FireStrategy(this);
 
     public Tank() {
-        super(tankImageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y);
+        super(imageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y);
         speed = 3;
     }
 
@@ -50,10 +49,10 @@ public class Tank extends Sprite {
     public void setDirection(Direction direction) {
         super.setDirection(direction);
         switch (direction) {
-            case LEFT: image = tankImageLeft; break;
-            case RIGHT: image = tankImageRight; break;
-            case UP: image = tankImageUp; break;
-            case DOWN: image = tankImageDown; break;
+            case LEFT: image = imageLeft; break;
+            case RIGHT: image = imageRight; break;
+            case UP: image = imageUp; break;
+            case DOWN: image = imageDown; break;
         }
     }
 
