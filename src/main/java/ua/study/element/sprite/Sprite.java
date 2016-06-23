@@ -9,8 +9,6 @@ import ua.study.field.BattlePanel;
 
 public abstract class Sprite implements Drawable{
 
-    private static final BattlePanel BATTLE_PANEL = BattlePanel.getInstance();
-
     protected Image image;
     protected int x;
     protected int y;
@@ -58,7 +56,7 @@ public abstract class Sprite implements Drawable{
 
     private boolean isBarrierOnWay(int newX, int newY) {
         Rectangle rectangle = new Rectangle(newX, newY, edgeSize, edgeSize);
-        for (Barrier barrier : BATTLE_PANEL.getBarriers()) {
+        for (Barrier barrier : BattlePanel.getInstance().getBarriers()) {
             if (rectangle.intersects(
                     new Rectangle(barrier.getX(), barrier.getY(), BARRIER_SIZE, BARRIER_SIZE))) {
                 return true;
