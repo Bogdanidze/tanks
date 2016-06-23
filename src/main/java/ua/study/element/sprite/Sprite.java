@@ -13,7 +13,7 @@ public abstract class Sprite implements Drawable{
     protected Image image;
     protected int x;
     protected int y;
-    protected Direction direction = Direction.NONE;
+    protected Direction direction;
     protected int speed = 1;
     private final int edgeSize;
 

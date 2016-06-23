@@ -1,6 +1,5 @@
 package ua.study.element.sprite;
 
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -28,12 +27,14 @@ public class Tank extends Sprite {
         }
     }
 
-    private static final int EDGE_SIZE = 90;
+    public static final int EDGE_SIZE = 90;
 
     private static final int PLAYER_1_INITIAL_POSITION_X = 0;
     private static final int PLAYER_1_INITIAL_POSITION_Y = 0;
 
     private FireStrategy fireStrategy = new FireStrategy(this);
+
+    private boolean moving;
 
     public Tank() {
         super(imageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y);
@@ -49,9 +50,20 @@ public class Tank extends Sprite {
             case UP: image = imageUp; break;
             case DOWN: image = imageDown; break;
         }
+        moving = true;
+    }
+
+    public void move() {
+        if (moving) {
+            super.move();
+        }
     }
 
     public CannonBall fire() {
         return fireStrategy.fire();
+    }
+
+    public void stop() {
+        moving = false;
     }
 }

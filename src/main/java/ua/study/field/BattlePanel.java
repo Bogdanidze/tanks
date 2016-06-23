@@ -63,24 +63,27 @@ public class BattlePanel extends JPanel implements ActionListener {
 
             int key = e.getKeyCode();
 
-            if ((key == KeyEvent.VK_LEFT && Direction.LEFT != tank.getDirection())) {
+            if (key == KeyEvent.VK_LEFT) {
                 tank.setDirection(Direction.LEFT);
             }
 
-            if ((key == KeyEvent.VK_RIGHT && Direction.RIGHT != tank.getDirection())) {
+            if (key == KeyEvent.VK_RIGHT) {
                 tank.setDirection(Direction.RIGHT);
             }
 
-            if ((key == KeyEvent.VK_UP && Direction.UP != tank.getDirection())) {
+            if ((key == KeyEvent.VK_UP)) {
                 tank.setDirection(Direction.UP);
             }
 
-            if ((key == KeyEvent.VK_DOWN && Direction.DOWN != tank.getDirection())) {
+            if (key == KeyEvent.VK_DOWN) {
                 tank.setDirection(Direction.DOWN);
             }
 
             if ((key == KeyEvent.VK_SPACE)) {
-                cannonBalls.add(tank.fire());
+                CannonBall cannonBall = tank.fire();
+                if (cannonBall != null) {
+                    cannonBalls.add(cannonBall);
+                }
             }
         }
 
@@ -89,20 +92,11 @@ public class BattlePanel extends JPanel implements ActionListener {
 
             int key = e.getKeyCode();
 
-            if ((key == KeyEvent.VK_LEFT) && Direction.LEFT == tank.getDirection()) {
-                tank.setDirection(Direction.NONE);
-            }
-
-            if ((key == KeyEvent.VK_RIGHT)  && Direction.RIGHT == tank.getDirection()) {
-                tank.setDirection(Direction.NONE);
-            }
-
-            if ((key == KeyEvent.VK_UP) && Direction.UP == tank.getDirection()) {
-                tank.setDirection(Direction.NONE);
-            }
-
-            if ((key == KeyEvent.VK_DOWN) && Direction.DOWN == tank.getDirection()) {
-                tank.setDirection(Direction.NONE);
+            if ((key == KeyEvent.VK_LEFT) && Direction.LEFT == tank.getDirection()
+                    || (key == KeyEvent.VK_RIGHT)  && Direction.RIGHT == tank.getDirection()
+                    || (key == KeyEvent.VK_UP) && Direction.UP == tank.getDirection()
+                    || (key == KeyEvent.VK_DOWN) && Direction.DOWN == tank.getDirection()) {
+                tank.stop();
             }
         }
     }

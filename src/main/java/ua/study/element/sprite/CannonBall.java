@@ -17,7 +17,7 @@ public class CannonBall extends Sprite {
         }
     }
 
-    private static final int EDGE_SIZE = 20;
+    public static final int EDGE_SIZE = 20;
 
     public CannonBall(int x, int y) {
         super(cannonBallImage, EDGE_SIZE, x, y);
