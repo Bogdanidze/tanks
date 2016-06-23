@@ -68,6 +68,10 @@ public class BattlePanel extends JPanel implements ActionListener {
             if ((key == KeyEvent.VK_DOWN && Direction.DOWN != tank.getDirection())) {
                 tank.setDirection(Direction.DOWN);
             }
+
+            if ((key == KeyEvent.VK_SPACE)) {
+                tank.fire();
+            }
         }
 
         @Override

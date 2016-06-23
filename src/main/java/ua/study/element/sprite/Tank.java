@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import ua.study.element.sprite.strategy.FireStrategy;
 import ua.study.field.BattlePanel;
 
 public class Tank extends Sprite {
@@ -30,6 +31,8 @@ public class Tank extends Sprite {
 
     private static final int EDGE_SIZE = 90;
 
+    private FireStrategy fireStrategy = new FireStrategy(this);
+
     public Tank(BattlePanel battlePanel) throws IOException {
         super(tankImageUp, EDGE_SIZE, battlePanel);
         speed = 3;
@@ -49,5 +52,9 @@ public class Tank extends Sprite {
             case UP: image = tankImageUp; break;
             case DOWN: image = tankImageDown; break;
         }
+    }
+
+    public void fire() {
+        fireStrategy.fire();
     }
 }
