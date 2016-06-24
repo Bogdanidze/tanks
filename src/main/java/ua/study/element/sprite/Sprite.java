@@ -11,21 +11,22 @@ import ua.study.field.BattlePanel;
 public abstract class Sprite implements Drawable{
 
     protected Image image;
+    private final int edgeSize;
     protected int x;
     protected int y;
     protected Direction direction;
-    protected int speed = 1;
-    private final int edgeSize;
+    protected int speed;
 
-    public Sprite(Image image, int edgeSize, int x, int y) {
+    public Sprite(Image image, int edgeSize, int x, int y, int speed) {
         this.image = image;
         this.edgeSize = edgeSize;
         this.x = x;
         this.y = y;
+        this.speed = speed;
     }
 
-    public Sprite(Image image, int edgeSize, int x, int y, Direction direction) {
-        this(image, edgeSize, x, y);
+    public Sprite(Image image, int edgeSize, int x, int y, Direction direction, int speed) {
+        this(image, edgeSize, x, y, speed);
         this.direction = direction;
     }
 

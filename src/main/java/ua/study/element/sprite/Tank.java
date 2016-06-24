@@ -32,13 +32,14 @@ public class Tank extends Sprite {
     private static final int PLAYER_1_INITIAL_POSITION_X = 0;
     private static final int PLAYER_1_INITIAL_POSITION_Y = 0;
 
+    private static final int PLAYER_SPEED = 3;
+
     private FireStrategy fireStrategy = new FireStrategy(this);
 
     private boolean moving;
 
     public Tank() {
-        super(imageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y);
-        speed = 3;
+        super(imageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y, PLAYER_SPEED);
     }
 
     @Override
