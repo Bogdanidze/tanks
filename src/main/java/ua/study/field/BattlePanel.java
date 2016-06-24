@@ -108,6 +108,9 @@ public class BattlePanel extends JPanel implements ActionListener {
     }
 
     private void moveSprites() {
+        for (CannonBall cannonBall : cannonBalls) {
+            cannonBall.move();
+        }
         tank.move();
     }
 

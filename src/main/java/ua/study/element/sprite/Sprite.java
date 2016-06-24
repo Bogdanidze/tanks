@@ -24,6 +24,11 @@ public abstract class Sprite implements Drawable{
         this.y = y;
     }
 
+    public Sprite(Image image, int edgeSize, int x, int y, Direction direction) {
+        this(image, edgeSize, x, y);
+        this.direction = direction;
+    }
+
     public Image getImage() {
         return image;
     }

@@ -41,7 +41,7 @@ public class FireStrategy {
                     y = tank.getY() + Tank.EDGE_SIZE;
                     break;
             }
-            return new CannonBall(x, y);
+            return new CannonBall(x, y, direction);
         } else {
             return null;
         }
