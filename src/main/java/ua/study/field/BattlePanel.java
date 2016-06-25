@@ -116,6 +116,9 @@ public class BattlePanel extends JPanel implements ActionListener {
             cannonBall.move();
         }
         tank.move();
+        for (Tank tank : enemyStrategy.getActiveEnemies()) {
+            tank.move();
+        }
     }
 
     @Override
