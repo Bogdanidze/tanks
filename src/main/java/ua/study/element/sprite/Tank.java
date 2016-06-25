@@ -30,8 +30,8 @@ public class Tank extends Sprite {
 
     public static final int EDGE_SIZE = 90;
 
-    private static final int PLAYER_1_INITIAL_POSITION_X = 0;
-    private static final int PLAYER_1_INITIAL_POSITION_Y = 0;
+    private static final int PLAYER_1_INITIAL_POSITION_X = 100;
+    private static final int PLAYER_1_INITIAL_POSITION_Y = 500;
 
     private static final int PLAYER_SPEED = 3;
 
@@ -40,7 +40,11 @@ public class Tank extends Sprite {
     public Tank() {
         super(imageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y, Direction.UP, PLAYER_SPEED, false);
     }
-
+    
+    public Tank(int x, int y) {
+        super(imageDown, EDGE_SIZE, x, y, PLAYER_SPEED);
+    }
+    
     @Override
     public void setDirection(Direction direction) {
         super.setDirection(direction);

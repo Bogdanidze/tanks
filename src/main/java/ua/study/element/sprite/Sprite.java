@@ -48,6 +48,10 @@ public abstract class Sprite implements Drawable{
         return direction;
     }
 
+    public void setMoving(boolean moving) {
+        this.moving = moving;
+    }
+
     @Override
     public void draw(Graphics2D graphics2D) {
         graphics2D.drawImage(image, x, y, null);

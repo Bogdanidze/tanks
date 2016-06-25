@@ -19,6 +19,7 @@ import ua.study.element.barrier.Barrier;
 import ua.study.element.sprite.CannonBall;
 import ua.study.element.sprite.Direction;
 import ua.study.element.sprite.Tank;
+import ua.study.element.sprite.strategy.EnemyStrategy;
 
 public class BattlePanel extends JPanel implements ActionListener {
 
@@ -35,6 +36,8 @@ public class BattlePanel extends JPanel implements ActionListener {
     protected List<Barrier> barriers = new ArrayList<>();
 
     private Tank tank = new Tank();
+
+    private EnemyStrategy enemyStrategy = new EnemyStrategy();
 
     private List<CannonBall> cannonBalls = new ArrayList<>();
 
@@ -125,6 +128,10 @@ public class BattlePanel extends JPanel implements ActionListener {
         }
 
         tank.draw(graphics2D);
+
+        for (Tank tank : enemyStrategy.getActiveEnemies()) {
+            tank.draw(graphics2D);
+        }
 
         for (CannonBall cannonBall : cannonBalls) {
             cannonBall.draw(graphics2D);
