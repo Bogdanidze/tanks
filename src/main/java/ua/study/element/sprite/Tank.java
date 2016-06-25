@@ -3,6 +3,7 @@ package ua.study.element.sprite;
 import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import ua.study.element.barrier.Barrier;
 import ua.study.element.sprite.strategy.FireStrategy;
 
 public class Tank extends Sprite {
@@ -36,8 +37,6 @@ public class Tank extends Sprite {
 
     private FireStrategy fireStrategy = new FireStrategy(this);
 
-    private boolean moving;
-
     public Tank() {
         super(imageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y, PLAYER_SPEED);
     }
@@ -58,6 +57,11 @@ public class Tank extends Sprite {
         if (moving) {
             super.move();
         }
+    }
+
+    @Override
+    protected boolean reactOnBarrier(Barrier barrier) {
+        return true;
     }
 
     public CannonBall fire() {

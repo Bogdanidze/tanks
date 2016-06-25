@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import ua.study.element.Drawable;
+import ua.study.field.BattlePanel;
 
 public class Barrier implements Drawable {
 
@@ -61,7 +62,7 @@ public class Barrier implements Drawable {
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        graphics2D.drawImage(image, x, y , null);
+        graphics2D.drawImage(image, x, y, null);
     }
 
     @Override
@@ -71,5 +72,9 @@ public class Barrier implements Drawable {
                 ", x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    public void destroy() {
+        BattlePanel.getInstance().getBarriers().remove(this);
     }
 }

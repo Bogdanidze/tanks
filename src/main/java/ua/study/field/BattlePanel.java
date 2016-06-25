@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -108,7 +109,7 @@ public class BattlePanel extends JPanel implements ActionListener {
     }
 
     private void moveSprites() {
-        for (CannonBall cannonBall : cannonBalls) {
+        for (CannonBall cannonBall : new CopyOnWriteArrayList<>(cannonBalls)) {
             cannonBall.move();
         }
         tank.move();
@@ -132,5 +133,9 @@ public class BattlePanel extends JPanel implements ActionListener {
 
     public List<Barrier> getBarriers() {
         return barriers;
+    }
+
+    public List<CannonBall> getCannonBalls() {
+        return cannonBalls;
     }
 }

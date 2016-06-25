@@ -16,6 +16,7 @@ public abstract class Sprite implements Drawable{
     protected int y;
     protected Direction direction;
     protected int speed;
+    protected boolean moving;
 
     public Sprite(Image image, int edgeSize, int x, int y, int speed) {
         this.image = image;
@@ -25,9 +26,10 @@ public abstract class Sprite implements Drawable{
         this.speed = speed;
     }
 
-    public Sprite(Image image, int edgeSize, int x, int y, Direction direction, int speed) {
+    public Sprite(Image image, int edgeSize, int x, int y, Direction direction, int speed, boolean moving) {
         this(image, edgeSize, x, y, speed);
         this.direction = direction;
+        this.moving = moving;
     }
 
     public Image getImage() {
@@ -63,6 +65,7 @@ public abstract class Sprite implements Drawable{
     private void moveLeft() {
         int newX = x - speed;
         if (newX < 0 || isBarrierOnWay(newX, y)) {
+            moving = false;
             return;
         }
         x -= speed;
@@ -73,15 +76,24 @@ public abstract class Sprite implements Drawable{
         for (Barrier barrier : BattlePanel.getInstance().getBarriers()) {
             if (rectangle.intersects(
                     new Rectangle(barrier.getX(), barrier.getY(), BARRIER_SIZE, BARRIER_SIZE))) {
-                return true;
+                return reactOnBarrier(barrier);
             }
         }
         return false;
     }
 
+    /**
+     * Returns true if a barrier blocks the sprite form moving, otherwise returns false.
+     * Also makes additional actions related to collision with the barrier (such as barrier destroying).
+     * @param barrier barrier that was found on the way of this sprite
+     * @return true if a barrier blocks the sprite form moving, otherwise returns false.
+     */
+    protected abstract boolean reactOnBarrier(Barrier barrier);
+
     private void moveRight() {
         int newX = x + speed;
         if (newX + edgeSize > BattlePanel.WIDTH || isBarrierOnWay(newX, y)) {
+            moving = false;
             return;
         }
         x += speed;
@@ -90,6 +102,7 @@ public abstract class Sprite implements Drawable{
     private void moveUp() {
         int newY = y - speed;
         if (newY < 0 || isBarrierOnWay(x, newY)) {
+            moving = false;
             return;
         }
         y -= speed;
@@ -98,6 +111,7 @@ public abstract class Sprite implements Drawable{
     private void moveDown() {
         int newY = y + speed;
         if (newY + edgeSize > BattlePanel.HEIGHT || isBarrierOnWay(x, newY)) {
+            moving = false;
             return;
         }
         y += speed;
