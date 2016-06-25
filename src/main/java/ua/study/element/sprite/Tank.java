@@ -38,7 +38,7 @@ public class Tank extends Sprite {
     private FireStrategy fireStrategy = new FireStrategy(this);
 
     public Tank() {
-        super(imageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y, PLAYER_SPEED);
+        super(imageUp, EDGE_SIZE, PLAYER_1_INITIAL_POSITION_X, PLAYER_1_INITIAL_POSITION_Y, Direction.UP, PLAYER_SPEED, false);
     }
 
     @Override
