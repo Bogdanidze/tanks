@@ -49,6 +49,11 @@ public class CannonBall extends Sprite {
         return true;
     }
 
+    @Override
+    protected boolean reactOnTank(Tank enemy) {
+        return true;
+    }
+
     private void destroy() {
         BattlePanel.getInstance().getCannonBalls().remove(this);
     }

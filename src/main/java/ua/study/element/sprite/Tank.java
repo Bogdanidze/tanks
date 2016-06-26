@@ -68,6 +68,11 @@ public class Tank extends Sprite {
         return true;
     }
 
+    @Override
+    protected boolean reactOnTank(Tank enemy) {
+        return true;
+    }
+
     public CannonBall fire() {
         return fireStrategy.fire();
     }

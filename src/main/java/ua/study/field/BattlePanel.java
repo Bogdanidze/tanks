@@ -148,4 +148,8 @@ public class BattlePanel extends JPanel implements ActionListener {
     public List<CannonBall> getCannonBalls() {
         return cannonBalls;
     }
+
+    public List<Tank> getActiveEnemies() {
+        return enemyStrategy.getActiveEnemies();
+    }
 }

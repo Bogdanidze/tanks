@@ -5,8 +5,9 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import ua.study.element.Drawable;
 import ua.study.element.barrier.Barrier;
-import static ua.study.element.barrier.Barrier.BARRIER_SIZE;
 import ua.study.field.BattlePanel;
+
+import static ua.study.element.barrier.Barrier.BARRIER_SIZE;
 
 public abstract class Sprite implements Drawable{
 
@@ -83,6 +84,12 @@ public abstract class Sprite implements Drawable{
                 return reactOnBarrier(barrier);
             }
         }
+        for (Tank enemy : BattlePanel.getInstance().getActiveEnemies()) {
+            if (this != enemy && rectangle.intersects(
+                    new Rectangle(enemy.getX(), enemy.getY(), Tank.EDGE_SIZE, Tank.EDGE_SIZE))) {
+                return reactOnTank(enemy);
+            }
+        }
         return false;
     }
 
@@ -93,6 +100,8 @@ public abstract class Sprite implements Drawable{
      * @return true if a barrier blocks the sprite form moving, otherwise returns false.
      */
     protected abstract boolean reactOnBarrier(Barrier barrier);
+
+    protected abstract boolean reactOnTank(Tank enemy);
 
     private void moveRight() {
         int newX = x + speed;
