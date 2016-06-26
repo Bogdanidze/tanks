@@ -51,6 +51,7 @@ public class CannonBall extends Sprite {
 
     @Override
     protected boolean reactOnTank(Tank enemy) {
+        enemy.destroy();
         return true;
     }
 

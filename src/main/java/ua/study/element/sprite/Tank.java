@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import ua.study.element.barrier.Barrier;
 import ua.study.element.sprite.strategy.FireStrategy;
+import ua.study.field.BattlePanel;
 
 public class Tank extends Sprite {
 
@@ -79,5 +80,9 @@ public class Tank extends Sprite {
 
     public void stop() {
         moving = false;
+    }
+
+    public void destroy() {
+        BattlePanel.getInstance().getActiveEnemies().remove(this);
     }
 }
