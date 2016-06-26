@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.swing.Timer;
+import ua.study.element.sprite.CannonBall;
 import ua.study.element.sprite.Direction;
 import ua.study.element.sprite.Tank;
+import ua.study.field.BattlePanel;
 
 public class EnemyStrategy implements ActionListener {
 
@@ -38,6 +40,16 @@ public class EnemyStrategy implements ActionListener {
         for (Tank enemy : activeEnemies) {
             enemy.setDirection(getRandomDirection());
             enemy.setMoving(random.nextBoolean());
+            tryToFire(enemy);
+        }
+    }
+
+    private void tryToFire(Tank enemy) {
+        if (random.nextBoolean()) {
+            CannonBall cannonBall = enemy.fire();
+            if (cannonBall != null) {
+                BattlePanel.getInstance().getCannonBalls().add(cannonBall);
+            }
         }
     }
 
