@@ -42,7 +42,7 @@ public class EnemyStrategy implements ActionListener {
     }
 
     private static Direction getRandomDirection() {
-        switch (random.nextInt(3)) {
+        switch (random.nextInt(4)) {
             case 0: return Direction.LEFT;
             case 1: return Direction.RIGHT;
             case 2: return Direction.UP;
