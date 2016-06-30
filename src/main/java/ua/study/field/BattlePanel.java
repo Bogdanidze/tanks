@@ -2,6 +2,8 @@ package ua.study.field;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -72,11 +74,10 @@ public class BattlePanel extends JPanel implements ActionListener {
             if (key == KeyEvent.VK_ESCAPE) {
                 pause = !pause;
             }
-            if (pause) {
-                return;
-            }
 
-            controlThePlayer(key);
+            if (!pause) {
+                controlThePlayer(key);
+            }
         }
 
         private void controlThePlayer(int key) {
@@ -122,8 +123,8 @@ public class BattlePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (!pause) {
             moveSprites();
-            repaint();
         }
+        repaint();
     }
 
     private void moveSprites() {
@@ -154,6 +155,18 @@ public class BattlePanel extends JPanel implements ActionListener {
         for (CannonBall cannonBall : cannonBalls) {
             cannonBall.draw(graphics2D);
         }
+        if (pause) {
+            drawCenteredString(graphics2D, "PAUSE", new Font("TimesRoman", Font.PLAIN, 100));
+        }
+        g.dispose();
+    }
+
+    public void drawCenteredString(Graphics g, String text, Font font) {
+        FontMetrics metrics = g.getFontMetrics(font);
+        int x = (WIDTH - metrics.stringWidth(text)) / 2;
+        int y = ((HEIGHT - metrics.getHeight()) / 2) + metrics.getAscent();
+        g.setFont(font);
+        g.drawString(text, x, y);
     }
 
     public List<Barrier> getBarriers() {
@@ -166,5 +179,9 @@ public class BattlePanel extends JPanel implements ActionListener {
 
     public List<Tank> getActiveEnemies() {
         return enemyStrategy.getActiveEnemies();
+    }
+
+    public boolean isPause() {
+        return pause;
     }
 }

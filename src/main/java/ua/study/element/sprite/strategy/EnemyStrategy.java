@@ -37,6 +37,9 @@ public class EnemyStrategy implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (BattlePanel.getInstance().isPause()) {
+            return;
+        }
         for (Tank enemy : activeEnemies) {
             enemy.setDirection(getRandomDirection());
             enemy.setMoving(random.nextBoolean());
