@@ -25,8 +25,8 @@ public class BattlePanel extends JPanel implements ActionListener {
 
     private static final BattlePanel INSTANCE = new BattlePanel();
 
-    public static final int WIDTH = 600;
-    public static final int HEIGHT = 600;
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 1000;
     private static final int DELAY = 25;    // 40 FPS
 
     private static final String LEVEL_1_FILE_NAME = "level1.txt";
