@@ -14,16 +14,19 @@ public class Barrier implements Drawable {
     private static final String BRICK_IMAGE_NAME = "brick.jpg";
     private static final String WATER_IMAGE_NAME = "water.jpg";
     private static final String CONCRETE_IMAGE_NAME = "concrete.jpg";
+    private static final String TARGET_IMAGE_NAME = "target.png";
 
     private static Image brickImage;
     private static Image waterImage;
     private static Image concreteImage;
+    private static Image targetImage;
 
     static {
         try {
             brickImage = ImageIO.read(Barrier.class.getResource(BRICK_IMAGE_NAME));
             waterImage = ImageIO.read(Barrier.class.getResource(WATER_IMAGE_NAME));
             concreteImage = ImageIO.read(Barrier.class.getResource(CONCRETE_IMAGE_NAME));
+            targetImage = ImageIO.read(Barrier.class.getResource(TARGET_IMAGE_NAME));
         } catch (IOException e) {
             System.out.println("Error while loading barrier image: " + e);
         }
@@ -45,6 +48,7 @@ public class Barrier implements Drawable {
             case BRICK: image = brickImage; break;
             case WATER: image = waterImage; break;
             case CONCRETE: image = concreteImage; break;
+            case TARGET: image = targetImage; break;
         }
     }
 

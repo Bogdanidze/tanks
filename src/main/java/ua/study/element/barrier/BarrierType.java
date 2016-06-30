@@ -2,7 +2,7 @@ package ua.study.element.barrier;
 
 public enum BarrierType {
 
-    BRICK("B"), WATER("W"), CONCRETE("C");
+    BRICK("B"), WATER("W"), CONCRETE("C"), TARGET("T");
 
     private final String id;
 
