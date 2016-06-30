@@ -41,6 +41,8 @@ public class BattlePanel extends JPanel implements ActionListener {
 
     private List<CannonBall> cannonBalls = new ArrayList<>();
 
+    private boolean pause;
+
     private BattlePanel() {
         addKeyListener(new BattleKeyAdapter());
         setBackground(Color.black);
@@ -67,6 +69,17 @@ public class BattlePanel extends JPanel implements ActionListener {
 
             int key = e.getKeyCode();
 
+            if (key == KeyEvent.VK_ESCAPE) {
+                pause = !pause;
+            }
+            if (pause) {
+                return;
+            }
+
+            controlThePlayer(key);
+        }
+
+        private void controlThePlayer(int key) {
             if (key == KeyEvent.VK_LEFT) {
                 tank.setDirection(Direction.LEFT);
             }
@@ -107,8 +120,10 @@ public class BattlePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        moveSprites();
-        repaint();
+        if (!pause) {
+            moveSprites();
+            repaint();
+        }
     }
 
     private void moveSprites() {
